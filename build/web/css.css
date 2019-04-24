@@ -1,0 +1,16 @@
+label {
+    width: 150px;
+    float: left;
+    text-align: right;
+    color: green;
+    font-size: 23px;
+    font-weight: bolder;
+}
+
+.txtText {
+    margin-left: 10px;
+}
+
+.txtText:hover {
+    cursor: grab;
+}

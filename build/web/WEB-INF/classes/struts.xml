@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default" namespace="/">
+        <action name="insert" class="phuctt.actions.InsertAction">
+            <exception-mapping exception="java.sql.SQLException" result="input"/>
+            <result name="success">create.jsp</result>
+            <result name="input">create.jsp</result>
+        </action>
+        
+        <action name="search" class="phuctt.actions.SearchAction">
+            <interceptor-ref name="basicStack"/>
+            <interceptor-ref name="chain"/>
+            <result name="success">searchpage.jsp</result>
+        </action>
+        
+        <action name="delete" class="phuctt.actions.DeleteAction">
+            <result name="success"  type="redirectAction">
+                <param name="actionName">search</param>
+                <param name="searchValue">${searchValue}</param>
+            </result>
+        </action>
+        
+        <action name="update" class="phuctt.actions.UpdateAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">search</param>
+                <param name="searchValue">${searchValue}</param>
+            </result>
+            <result name="input" type="chain">search</result>
+        </action>
+    </package>
+</struts>
